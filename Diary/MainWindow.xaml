@@ -4,14 +4,36 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diary"
+        xmlns:uc="clr-namespace:Diary.Elements"
         mc:Ignorable="d"
-        Title="Diaro - Регистрация" Height="450" Width="800" Background="DodgerBlue" ResizeMode="NoResize">
+        Title="Diaro - Регистрация" Height="450" Width="800" Background="Blue" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="107*"/>
-            <RowDefinition Height="210*"/>
+            <RowDefinition Height="137*"/>
+            <RowDefinition Height="130*"/>
             <RowDefinition Height="103*"/>
         </Grid.RowDefinitions>
 
+        <TextBlock Margin="0 0 0 0" Foreground="White" FontSize="88" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Kristen ITC" >Diary</TextBlock>
+
+        <StackPanel Grid.Row="1" Margin="20" HorizontalAlignment="Center">
+
+            <uc:TextBoxWithImage textBoxImage="Resources/mail.png" Margin="0 0 0 20" />
+
+            <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5">
+                <DockPanel>
+                    <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
+                        <Image Source="Resources/pass.png"/>
+                    </Button>
+                    <TextBox Margin="5 0 0 0" Width="300" Text="" FontSize="16" HorizontalAlignment="Stretch" BorderThickness="0"/>
+
+                    <Border CornerRadius="4" BorderThickness="1" BorderBrush="Black">
+                        <Button Background="Transparent" Content="ПОКАЗАТЬ" BorderThickness="0" DockPanel.Dock="Right" HorizontalAlignment="Left" Height="27" Width="70" FontFamily="Microsoft YaHei Light">
+                        </Button>
+                    </Border>
+                </DockPanel>
+            </Border>
+
+        </StackPanel>
     </Grid>
 </Window>
