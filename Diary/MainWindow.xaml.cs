@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,27 @@ namespace Diary
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void BtnRegister_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnShowPass_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private bool isValidEmail(string email)
+        {
+            var addr = new EmailAddressAttribute();
+            return addr.IsValid(email);
         }
     }
 }
