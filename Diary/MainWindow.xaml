@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diary"
         mc:Ignorable="d"
-        Title="Diaro - Регистрация" Height="450" Width="800" Background="Blue" ResizeMode="NoResize">
+        Title="Diaro - Регистрация" Height="450" Width="800" Background="#4a68e5" ResizeMode="NoResize" WindowStyle="ToolWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="137*"/>
@@ -17,7 +17,7 @@
 
         <StackPanel Grid.Row="1" Margin="0" HorizontalAlignment="Center">
 
-            <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
+            <Border Width="416" BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
                 <DockPanel>
                     <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
                         <Image Source="Resources/mail.png"/>
@@ -26,20 +26,20 @@
                 </DockPanel>
             </Border>
 
-            <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5">
+            <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Width="416">
                 <DockPanel>
                     <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
                         <Image Source="Resources/pass.png"/>
                     </Button>
                     <PasswordBox x:Name="TBpass"
                                  Margin="5 0 5 0" Width="300" PasswordChar="*" FontSize="16" 
-                                 HorizontalAlignment="Stretch" BorderThickness="0"/>
-                    <TextBox  x:Name="TBpassShowed" Text="{Binding Password, Mode = TwoWay, ElementName=TBpass}" 
+                                 HorizontalAlignment="Stretch" BorderThickness="0" MaxLength="27"/>
+                    <TextBox  x:Name="TBpassShowed"  
                               Visibility="Collapsed" Margin="5 0 5 0" Width="300" FontSize="16" 
                               HorizontalAlignment="Stretch" BorderThickness="0"/>
 
-                    <Border CornerRadius="4" BorderThickness="1" BorderBrush="Black">
-                        <Button Name="BtnShowPass" Click="BtnShowPass_Click" Background="Transparent" Content="ПОКАЗАТЬ" BorderThickness="0" DockPanel.Dock="Right" HorizontalAlignment="Left" Height="27" Padding="3" FontFamily="Microsoft YaHei Light">
+                    <Border CornerRadius="4" BorderThickness="1" BorderBrush="Black" DockPanel.Dock="Right">
+                        <Button Name="BtnShowPass" Click="BtnShowPass_Click" Background="Transparent" Content="ПОКАЗАТЬ" BorderThickness="0" Height="27" Padding="3" FontFamily="Microsoft YaHei Light">
                         </Button>
                     </Border>
                 </DockPanel>

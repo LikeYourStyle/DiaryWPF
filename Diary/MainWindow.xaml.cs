@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diary.Windows;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Diary
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +30,8 @@ namespace Diary
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-
+            new RegistrWindow().Show();
+            this.Close();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -38,7 +41,21 @@ namespace Diary
 
         private void BtnShowPass_Click(object sender, RoutedEventArgs e)
         {
-
+            if ((String)BtnShowPass.Content == "ПОКАЗАТЬ")
+            {
+                TBpass.Visibility = Visibility.Collapsed;
+                TBpassShowed.Visibility = Visibility.Visible;
+                TBpassShowed.Text = TBpass.Password;
+                BtnShowPass.Content = "СКРЫТЬ";
+            }
+            else
+            {
+                TBpassShowed.Visibility = Visibility.Collapsed;
+                TBpass.Visibility = Visibility.Visible;
+                TBpass.Password = TBpassShowed.Text;
+                BtnShowPass.Content = "ПОКАЗАТЬ";
+            }
+                
         }
 
         private bool isValidEmail(string email)
