@@ -32,6 +32,7 @@
                 <ListBox.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Удалить" Click="MenuItemDelete_Click"/>
+                        <MenuItem Header="Изменить" Click="MenuItemEdit_Click"></MenuItem>
                     </ContextMenu>
                 </ListBox.ContextMenu>
             </ListBox>

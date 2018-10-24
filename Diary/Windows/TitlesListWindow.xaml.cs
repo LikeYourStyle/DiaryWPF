@@ -23,6 +23,7 @@ namespace Diary.Windows
     {
         public NewTitleWindow NewTitleWindow;
         public ShowTitleWindow ShowTitleWindow;
+        public EditTitleWindow EditTitleWindow;
         SqlConnection connection;
         SortedDictionary<int, int> id_titleId_Map = new SortedDictionary<int, int>(); 
 
@@ -426,6 +427,24 @@ namespace Diary.Windows
             {
                 ShowTitleWindow = new ShowTitleWindow(this, title_id);
                 ShowTitleWindow.Show();
+            }
+        }
+
+        private void MenuItemEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var element = LBtitles.SelectedIndex;
+            int title_id = id_titleId_Map.ElementAt(element).Value;
+            if (EditTitleWindow != null && EditTitleWindow.Visibility == Visibility.Visible)
+            {
+                EditTitleWindow.Close();
+                EditTitleWindow = new EditTitleWindow(this, title_id);
+                EditTitleWindow.Show();
+                EditTitleWindow.Focus();
+            }
+            else
+            {
+                EditTitleWindow = new EditTitleWindow(this, title_id);
+                EditTitleWindow.Show();
             }
         }
     }
