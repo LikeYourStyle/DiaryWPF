@@ -19,7 +19,7 @@
                     <Image Source="/Resources/close1.png"></Image>
                 </Button>
             </Border>
-            <Image Name="ImgAdded" Stretch="Fill"  Source="C:\Users\User\Pictures\1920x1080_Neon.jpg"></Image>
+            <Image Name="ImgAdded" Stretch="Fill"></Image>
 
             <StackPanel Name="SPcontrol" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
                 <Border Margin="10" Panel.ZIndex="1" CornerRadius="5" Padding="3" HorizontalAlignment="Right" Width="30" Height="30" Background="White"  VerticalAlignment="Top">

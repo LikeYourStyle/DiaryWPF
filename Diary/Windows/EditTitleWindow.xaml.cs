@@ -127,24 +127,21 @@ namespace Diary.Windows
                     {
                         connection = new SqlConnection(MainWindow.connectionString);
                         connection.Open();
-                        SqlCommand command = new SqlCommand("INSERT INTO Titles VALUES (@userId, @title, @text, @date, @have_image)", connection);
-                        command.Parameters.AddWithValue("@userId", MainWindow.id);
+                        SqlCommand command = new SqlCommand("UPDATE Titles SET title = @title, text = @text, have_image = 1 WHERE id = @title_id", connection);
+                        command.Parameters.AddWithValue("@title_id", titleId);
                         command.Parameters.AddWithValue("@title", TBTitle.Text);
                         command.Parameters.AddWithValue("@text", TBText.Text);
-                        command.Parameters.AddWithValue("@date", DateTime.Now);
-                        command.Parameters.AddWithValue("@have_image", 1);
                         command.ExecuteNonQuery();
                         command = null;
-                        command = new SqlCommand("SELECT MAX(id) as id FROM Titles", connection);
-                        SqlDataReader reader = command.ExecuteReader();
-                        if (reader.Read())
-                            titleId = Convert.ToInt32(reader["id"]);
-                        reader.Close();
-                        foreach (var imagePath in imagesList)
+                        command = new SqlCommand("DELETE FROM Images WHERE title_id = @title_id", connection);
+                    command.Parameters.AddWithValue("@title_id",titleId);
+                        command.ExecuteNonQuery();
+
+                        foreach (var image in imagesList)
                         {
                             command = new SqlCommand("INSERT INTO Images VALUES (@title_id, @image)", connection);
                             command.Parameters.AddWithValue("@title_id", titleId);
-                            //command.Parameters.AddWithValue("@image", File.ReadAllBytes());
+                            command.Parameters.AddWithValue("@image", ImageSourceToBytes(image.Source));
                             command.ExecuteNonQuery();
                         }
                         this.Close();
@@ -163,12 +160,14 @@ namespace Diary.Windows
                     {
                         connection = new SqlConnection(MainWindow.connectionString);
                         connection.Open();
-                        SqlCommand command = new SqlCommand("INSERT INTO Titles VALUES (@userId, @title, @text, @date, @have_image)", connection);
-                        command.Parameters.AddWithValue("@userId", MainWindow.id);
+                        SqlCommand command = new SqlCommand("UPDATE Titles SET title = @title, text = @text, have_image = 0 WHERE id = @title_id", connection);
+                        command.Parameters.AddWithValue("@title_id", titleId);
                         command.Parameters.AddWithValue("@title", TBTitle.Text);
                         command.Parameters.AddWithValue("@text", TBText.Text);
-                        command.Parameters.AddWithValue("@date", DateTime.Now);
-                        command.Parameters.AddWithValue("@have_image", 0);
+                        command.ExecuteNonQuery();
+                        command = null;
+                        command = new SqlCommand("DELETE FROM Images WHERE title_id = @title_id", connection);
+                        command.Parameters.AddWithValue("@title_id", titleId);
                         command.ExecuteNonQuery();
                         this.Close();
                     }
@@ -177,6 +176,26 @@ namespace Diary.Windows
                 }
             } // Если поля не заполнены
             else MessageBox.Show("Заполните текстовые поля!");
+        }
+
+        public byte[] ImageSourceToBytes(ImageSource imageSource)
+        {
+            byte[] bytes = null;
+            var bitmapSource = imageSource as BitmapSource;
+
+            if (bitmapSource != null)
+            {
+                var encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+                using (var stream = new MemoryStream())
+                {
+                    encoder.Save(stream);
+                    bytes = stream.ToArray();
+                }
+            }
+
+            return bytes;
         }
 
         private void controlButton_Click(object sender, RoutedEventArgs e)
@@ -234,9 +253,9 @@ namespace Diary.Windows
                 if (imageId == imagesList.Count)
                 {
                     imageId -= 1;
-                    ImgAdded = imagesList[imageId];
+                    ImgAdded.Source = imagesList[imageId].Source;
                 }
-                else { ImgAdded = imagesList[imageId]; }
+                else { ImgAdded.Source = imagesList[imageId].Source; }
 
                 if (imagesList.Count == 1)
                 {
@@ -300,6 +319,7 @@ namespace Diary.Windows
         private void Window_Closed(object sender, EventArgs e)
         {
             TitlesListWindow.EditTitleWindow = null;
+            TitlesListWindow.updateList();
         }
 
         private void TBText_GotFocus(object sender, RoutedEventArgs e)
