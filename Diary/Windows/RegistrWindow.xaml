@@ -23,11 +23,11 @@
 
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Foreground="White" FontSize="50" FontFamily="Kristen ITC" HorizontalAlignment="Center" VerticalAlignment="Center" >Регистрация в Diary</TextBlock>
 
-        <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Center" Width="400">
-            <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" Width="400">
+            <Border Name="BorderMail" BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
                 <DockPanel>
                     <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
-                        <Image Source="Resources/mail.png"/>
+                        <Image Source="/Resources/mail.png"/>
                     </Button>
                     <TextBox GotFocus="TBmail_GotFocus" LostFocus="TBmail_LostFocus" Foreground="Gray" Name="TBmail" Margin="5 0 0 0" Text="Имя пользователя" MaxLength="27" FontSize="16" HorizontalAlignment="Stretch" BorderThickness="0"/>
                 </DockPanel>
@@ -36,7 +36,7 @@
             <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
                 <DockPanel>
                     <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" Height="28" Width="23">
-                        <Image Source="Resources/pass.png"/>
+                        <Image Source="/Resources/pass.png"/>
                     </Button>
                     <PasswordBox x:Name="TBpass"
                                  Margin="5 0 0 0" PasswordChar="*" FontSize="16" 
@@ -44,20 +44,6 @@
                     <TextBox x:Name="TBhint"
                                  Margin="5 0 0 0" FontSize="16" 
                                  HorizontalAlignment="Stretch" BorderThickness="0" Foreground="Gray"   GotFocus="TBhint_GotFocus">Пароль</TextBox>
-                </DockPanel>
-            </Border>
-
-            <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5">
-                <DockPanel>
-                    <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
-                        <Image Source="Resources/pass.png"/>
-                    </Button>
-                    <PasswordBox x:Name="TBpassAgain"
-                                 Margin="5 0 0 0" PasswordChar="*" FontSize="16" 
-                                 HorizontalAlignment="Stretch" BorderThickness="0" Width="360" Visibility="Collapsed" LostFocus="TBpassAgain_LostFocus"/>
-                    <TextBox x:Name="TBhintAgain"
-                                 Margin="5 0 0 0" FontSize="16" 
-                                 HorizontalAlignment="Stretch" BorderThickness="0" Foreground="Gray" GotFocus="TBhintAgain_GotFocus">Повторите пароль</TextBox>
                 </DockPanel>
             </Border>
         </StackPanel>

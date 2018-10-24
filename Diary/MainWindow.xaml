@@ -17,21 +17,19 @@
 
         <StackPanel Grid.Row="1" Margin="0" HorizontalAlignment="Center">
 
-            <Border Width="416" BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
+            <Border Name="BorderMail" Width="416" BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
                 <DockPanel>
-                    <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
-                        <Image Source="Resources/mail.png"/>
-                    </Button>
-                    <TextBox Name="TBmail" Margin="5 0 0 0" Text="" MaxLength="27" FontSize="16" HorizontalAlignment="Stretch" BorderThickness="0"/>
+                    <Image Source="Resources/mail.png" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
+                    </Image>
+                    <TextBox LostFocus="TBmail_LostFocus" Name="TBmail" Margin="5 0 0 0" Text="a@a.a" MaxLength="27" FontSize="16" HorizontalAlignment="Stretch" BorderThickness="0"/>
                 </DockPanel>
             </Border>
 
             <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Width="416">
                 <DockPanel>
-                    <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
-                        <Image Source="Resources/pass.png"/>
-                    </Button>
-                    <PasswordBox x:Name="TBpass"
+                    <Image Source="Resources/pass.png" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
+                    </Image>
+                    <PasswordBox x:Name="TBpass" Password="a"
                                  Margin="5 0 5 0" Width="300" PasswordChar="*" FontSize="16" 
                                  HorizontalAlignment="Stretch" BorderThickness="0" MaxLength="27"/>
                     <TextBox  x:Name="TBpassShowed"  
@@ -39,13 +37,13 @@
                               HorizontalAlignment="Stretch" BorderThickness="0"/>
 
                     <Border CornerRadius="4" BorderThickness="1" BorderBrush="Black" DockPanel.Dock="Right">
-                        <Button Name="BtnShowPass" Click="BtnShowPass_Click" Background="Transparent" Content="ПОКАЗАТЬ" BorderThickness="0" Height="27" Padding="3" FontFamily="Microsoft YaHei Light">
+                        <Button IsTabStop="False" Name="BtnShowPass" Click="BtnShowPass_Click" Background="Transparent" Content="ПОКАЗАТЬ" BorderThickness="0" Height="27" Padding="3" FontFamily="Microsoft YaHei Light">
                         </Button>
                     </Border>
                 </DockPanel>
             </Border>
 
-            <Button Click="BtnRegister_Click" Name="BtnRegister" BorderThickness="0" Margin="0 20 0 0" Background="Transparent" Foreground="White" FontSize="16">Ещё не зарегистрированы?</Button>
+            <Button IsTabStop="False" Click="BtnRegister_Click" Name="BtnRegister" BorderThickness="0" Margin="0 20 0 0" Background="Transparent" Foreground="White" FontSize="16">Ещё не зарегистрированы?</Button>
         </StackPanel>
 
         <Border HorizontalAlignment="Center" Background="White" VerticalAlignment="Center" Grid.Row="2" CornerRadius="4" BorderThickness="1" BorderBrush="White" Padding="3">

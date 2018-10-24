@@ -1,0 +1,62 @@
+﻿<Window x:Class="Diary.Windows.ShowTitleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diary.Windows"
+        mc:Ignorable="d"
+        Title="Diary - Просмотр записи" Closed="Window_Closed" ResizeMode="NoResize" WindowStyle="ToolWindow" Width="800" Height="450">
+    <!--Height="450"-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="55*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="GridImage" Visibility="Collapsed" Width="600" Height="200">
+            <Image Name="ImgAdded" Stretch="Fill"  Source="C:\Users\User\Pictures\1920x1080_Neon.jpg"></Image>
+
+            <StackPanel Name="SPcontrol" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Border Margin="10" Panel.ZIndex="1" CornerRadius="5" Padding="3" HorizontalAlignment="Right" Width="30" Height="30" Background="White"  VerticalAlignment="Top">
+                    <Button Name="BtnBackImg" Click="controlButton_Click" BorderThickness="0" Background="Transparent">
+                        <Image Source="/Resources/back.png"></Image>
+                    </Button>
+                </Border>
+
+                <Border Margin="10" Panel.ZIndex="1" CornerRadius="5" Padding="3" HorizontalAlignment="Right" Width="30" Height="30" Background="White"  VerticalAlignment="Top">
+                    <Button Name="BtnNextImg" Click="controlButton_Click" BorderThickness="0" Background="Transparent">
+                        <Image Source="/Resources/next.png"></Image>
+                    </Button>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.RowSpan="2" Margin="0,0,0,30" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Grid Margin="0 0 0 16">
+                <Border HorizontalAlignment="Left" Width="100" Height="44" BorderThickness="1" BorderBrush="Black" Padding="5" Background="White" CornerRadius="5">
+                    <Button FontFamily="Microsoft YaHei Light" Name="backButton" BorderThickness="0" Background="Transparent" Click="backButton_Click" FontSize="22" Height="32" Margin="-0.4,-0.4,0.4,0.4" VerticalAlignment="Bottom">Назад</Button>
+                </Border>
+
+                <TextBlock HorizontalAlignment="Center" FontFamily="Microsoft YaHei Light" VerticalAlignment="Center" FontSize="30" Name="TBdate">13 11 1999</TextBlock>
+
+                <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Right">
+                    
+
+                    <Border Width="114" Height="44" Background="White" CornerRadius="4" BorderThickness="1" BorderBrush="Black" Padding="3">
+                        <Button Name="BtnEdit" Click="BtnEdit_Click" Background="White" BorderThickness="0" FontSize="22" FontFamily="Microsoft YaHei Light">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="22" FontFamily="Microsoft YaHei Light">Изменить</TextBlock>
+                                <Image Source="/Resources/ok.png"></Image>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock TextAlignment="Center" Name="TBTitle" Padding="5" Width="600" Margin="0 0 0 20" FontSize="16"></TextBlock>
+
+            <TextBlock TextAlignment="Center" Name="TBText" TextWrapping="WrapWithOverflow" Padding="5" Width="600" Height="250" FontSize="16"></TextBlock>
+
+        </StackPanel>
+    </Grid>
+</Window>

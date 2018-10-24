@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace Diary.Windows
     /// </summary>
     public partial class RegistrWindow : Window
     {
-        MainWindow MainWindow;
+        SqlConnection connection;
+
         public RegistrWindow()
         {
             InitializeComponent();
@@ -33,7 +35,52 @@ namespace Diary.Windows
 
         private void BtnReg_Click(object sender, RoutedEventArgs e)
         {
+            String pass;
+            String passAgain;
+            String login;
+            try
+            {
+                login = TBmail.Text;
+                pass = TBpass.Password;
+                passAgain = TBpass.Password;
+            }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            if (pass == passAgain && MainWindow.isValidEmail(login))
+            {
+                CreateUser(login, pass);
+            }
+        }
 
+        private async void CreateUser(String login, String pass)
+        {
+            try
+            {
+                connection = new SqlConnection(MainWindow.connectionString);
+                await connection.OpenAsync();
+                SqlCommand command = new SqlCommand("INSERT INTO Users Values(@login, @password)", connection);
+                command.Parameters.AddWithValue("login", login);
+                command.Parameters.AddWithValue("password", pass);
+                await command.ExecuteNonQueryAsync();
+                MessageBox.Show("Успешная регситрация!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                new MainWindow().Show();
+                this.Close();
+            }
+            catch (System.Data.Common.DbException)
+            {
+                MessageBox.Show("Такой логин уже используется", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
         }
 
         private void TBmail_GotFocus(object sender, RoutedEventArgs e)
@@ -52,7 +99,13 @@ namespace Diary.Windows
             if (textBox.Text == "Имя пользователя" || String.IsNullOrEmpty(textBox.Text) || String.IsNullOrWhiteSpace(textBox.Text))
             {
                 textBox.Foreground = Brushes.Gray;
+                BorderMail.BorderBrush = Brushes.White;
                 textBox.Text = "Имя пользователя";
+            }
+            else
+            {
+                if (MainWindow.isValidEmail(TBmail.Text)){ BorderMail.BorderBrush = Brushes.White; }
+                    else { BorderMail.BorderBrush = Brushes.Red; }
             }
         }
 
@@ -73,24 +126,6 @@ namespace Diary.Windows
                 TBhint.Visibility = Visibility.Visible;
             }
 
-        }
-
-        private void TBhintAgain_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            textBox.Visibility = Visibility.Collapsed;
-            TBpassAgain.Visibility = Visibility.Visible;
-            TBpassAgain.Focus();
-        }
-
-        private void TBpassAgain_LostFocus(object sender, RoutedEventArgs e)
-        {
-            PasswordBox passwordBox = (PasswordBox)sender;
-            if (String.IsNullOrEmpty(passwordBox.Password) || String.IsNullOrWhiteSpace(passwordBox.Password))
-            {
-                passwordBox.Visibility = Visibility.Collapsed;
-                TBhintAgain.Visibility = Visibility.Visible;
-            }
         }
     }
 }

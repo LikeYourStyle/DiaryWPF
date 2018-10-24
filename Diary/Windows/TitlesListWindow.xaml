@@ -1,0 +1,44 @@
+﻿<Window x:Class="Diary.Windows.TitlesListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diary.Windows"
+        mc:Ignorable="d"
+        Title="Diary - Записи" ResizeMode="NoResize" WindowStyle="ToolWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250*"/>
+            <ColumnDefinition Width="587*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <TextBlock Name="TBwelcome" Width="200" TextWrapping="Wrap" Margin="10" FontSize="18" FontFamily="Microsoft YaHei Light" TextAlignment="Center" HorizontalAlignment="Center" TextDecorations="Underline">Привет, Mingaleev99@yandex.ru!</TextBlock>
+
+            <TextBlock Margin="0 10 0 0" FontSize="18" FontFamily="Microsoft YaHei Light" TextAlignment="Center" HorizontalAlignment="Center">Количество записей: </TextBlock>
+
+            <TextBlock Name="TBtitlesCount" Margin="10" FontSize="20" FontFamily="Microsoft YaHei Light" TextAlignment="Center" HorizontalAlignment="Center">5</TextBlock>
+
+            <Calendar Margin="10"></Calendar>
+        </StackPanel>
+
+        <Border Margin="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="White" Grid.Row="2" CornerRadius="4" BorderThickness="1" BorderBrush="Black" Padding="3">
+            <Button Background="White" BorderThickness="0"
+                     Width="170" Height="26" FontSize="16" FontFamily="Microsoft YaHei Light" Name="BtnLogin" Click="BtnLogin_Click">Выйти</Button>
+        </Border>
+
+        <ScrollViewer Grid.Column="1">
+            <ListBox Name="LBtitles" MouseDoubleClick="LBtitles_MouseDoubleClick">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Удалить" Click="MenuItemDelete_Click"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+        </ScrollViewer>
+        <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 20 50 30" Grid.Column="1" Width="60" Height="60" Background="Orange" CornerRadius="100">
+            <Button Name="BtnNewTitle" Click="BtnNewTitle_Click" Background="Transparent" FontSize="50" HorizontalAlignment="Center" BorderThickness="0" Foreground="White" FontFamily="Black">+</Button>
+        </Border>
+    </Grid>
+    
+</Window>
