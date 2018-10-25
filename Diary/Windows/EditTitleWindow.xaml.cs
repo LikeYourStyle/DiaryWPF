@@ -113,6 +113,7 @@ namespace Diary.Windows
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            TitlesListWindow.Focus();
         }
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
@@ -302,7 +303,7 @@ namespace Diary.Windows
                     
                     if (imagesList.Count > 1)
                         SPcontrol.Visibility = Visibility.Visible;
-                    ImgAdded = imagesList.First();
+                    ImgAdded.Source = imagesList.First().Source;
                     imageId = 0;
                     imageAdded = true;
                 }
@@ -320,6 +321,13 @@ namespace Diary.Windows
         {
             TitlesListWindow.EditTitleWindow = null;
             TitlesListWindow.updateList();
+            if (TitlesListWindow.ShowTitleWindow != null)
+            {
+                TitlesListWindow.ShowTitleWindow = new ShowTitleWindow(TitlesListWindow, titleId);
+                TitlesListWindow.ShowTitleWindow.Close();
+                TitlesListWindow.ShowTitleWindow.Show();
+                TitlesListWindow.ShowTitleWindow.Focus();
+            }
         }
 
         private void TBText_GotFocus(object sender, RoutedEventArgs e)

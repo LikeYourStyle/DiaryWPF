@@ -21,7 +21,7 @@
                 <DockPanel>
                     <Image Source="Resources/mail.png" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
                     </Image>
-                    <TextBox LostFocus="TBmail_LostFocus" Name="TBmail" Margin="5 0 0 0" Text="a@a.a" MaxLength="27" FontSize="16" HorizontalAlignment="Stretch" BorderThickness="0"/>
+                    <TextBox LostFocus="TBmail_LostFocus" Name="TBmail" Margin="5 0 0 0" MaxLength="27" FontSize="16" HorizontalAlignment="Stretch" BorderThickness="0"/>
                 </DockPanel>
             </Border>
 
@@ -29,7 +29,7 @@
                 <DockPanel>
                     <Image Source="Resources/pass.png" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
                     </Image>
-                    <PasswordBox x:Name="TBpass" Password="a"
+                    <PasswordBox x:Name="TBpass"
                                  Margin="5 0 5 0" Width="300" PasswordChar="*" FontSize="16" 
                                  HorizontalAlignment="Stretch" BorderThickness="0" MaxLength="27"/>
                     <TextBox  x:Name="TBpassShowed"  

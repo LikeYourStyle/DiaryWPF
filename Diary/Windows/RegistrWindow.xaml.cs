@@ -64,7 +64,7 @@ namespace Diary.Windows
                 command.Parameters.AddWithValue("login", login);
                 command.Parameters.AddWithValue("password", pass);
                 await command.ExecuteNonQueryAsync();
-                MessageBox.Show("Успешная регситрация!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Успешная регистрация!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
                 new MainWindow().Show();
                 this.Close();
             }

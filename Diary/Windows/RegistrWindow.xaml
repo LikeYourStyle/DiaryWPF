@@ -18,7 +18,7 @@
 
 
         <Border HorizontalAlignment="Left" Width="70" Margin="10,14,0,14" Height="40" BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5">
-            <Button FontFamily="Microsoft YaHei Light" Name="backButton" BorderThickness="0" Background="Transparent" Click="backButton_Click" FontSize="18">Назад</Button>
+            <Button IsTabStop="False" FontFamily="Microsoft YaHei Light" Name="backButton" BorderThickness="0" Background="Transparent" Click="backButton_Click" FontSize="18">Назад</Button>
         </Border>
 
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Foreground="White" FontSize="50" FontFamily="Kristen ITC" HorizontalAlignment="Center" VerticalAlignment="Center" >Регистрация в Diary</TextBlock>
@@ -26,18 +26,16 @@
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" Width="400">
             <Border Name="BorderMail" BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
                 <DockPanel>
-                    <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
-                        <Image Source="/Resources/mail.png"/>
-                    </Button>
+                    <Image Source="/Resources/mail.png" DockPanel.Dock="Left" HorizontalAlignment="Right" Height="28" Width="23">
+                    </Image>
                     <TextBox GotFocus="TBmail_GotFocus" LostFocus="TBmail_LostFocus" Foreground="Gray" Name="TBmail" Margin="5 0 0 0" Text="Имя пользователя" MaxLength="27" FontSize="16" HorizontalAlignment="Stretch" BorderThickness="0"/>
                 </DockPanel>
             </Border>
 
             <Border BorderThickness="1" BorderBrush="White" Padding="5" Background="White" CornerRadius="5" Margin="0 0 0 27">
                 <DockPanel>
-                    <Button Background="Transparent" BorderThickness="0" DockPanel.Dock="Left" Height="28" Width="23">
-                        <Image Source="/Resources/pass.png"/>
-                    </Button>
+                    <Image Source="/Resources/pass.png" DockPanel.Dock="Left" Height="28" Width="23"/>
+
                     <PasswordBox x:Name="TBpass"
                                  Margin="5 0 0 0" PasswordChar="*" FontSize="16" 
                                  HorizontalAlignment="Stretch" BorderThickness="0" Width="360" Visibility="Collapsed" LostFocus="TBpass_LostFocus"/>

@@ -147,11 +147,23 @@ namespace Diary.Windows
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            TitlesListWindow.Focus();
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (TitlesListWindow.EditTitleWindow != null && TitlesListWindow.EditTitleWindow.Visibility == Visibility.Visible)
+            {
+                TitlesListWindow.EditTitleWindow.Close();
+                TitlesListWindow.EditTitleWindow = new EditTitleWindow(TitlesListWindow, titleId);
+                TitlesListWindow.EditTitleWindow.Show();
+                TitlesListWindow.EditTitleWindow.Focus();
+            }
+            else
+            {
+                TitlesListWindow.EditTitleWindow = new EditTitleWindow(TitlesListWindow, titleId);
+                TitlesListWindow.EditTitleWindow.Show();
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)

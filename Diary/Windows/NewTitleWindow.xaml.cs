@@ -33,6 +33,7 @@ namespace Diary.Windows
         {
             InitializeComponent();
             TitlesListWindow = titlesListWindow;
+            TBdate.Text = DateTime.Now.ToString();
         }
 
         private void BtnAddImage_Click(object sender, RoutedEventArgs e)
@@ -65,6 +66,7 @@ namespace Diary.Windows
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            TitlesListWindow.Focus();
         }
 
         private void Window_Closed(object sender, EventArgs e)
