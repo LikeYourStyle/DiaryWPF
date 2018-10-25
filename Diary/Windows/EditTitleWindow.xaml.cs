@@ -177,6 +177,13 @@ namespace Diary.Windows
                 }
             } // Если поля не заполнены
             else MessageBox.Show("Заполните текстовые поля!");
+
+            if (TitlesListWindow.ShowTitleWindow != null)
+            {
+                TitlesListWindow.ShowTitleWindow.Close();
+                TitlesListWindow.ShowTitleWindow = new ShowTitleWindow(TitlesListWindow, titleId);
+                TitlesListWindow.ShowTitleWindow.Show();
+            }
         }
 
         public byte[] ImageSourceToBytes(ImageSource imageSource)
@@ -321,13 +328,6 @@ namespace Diary.Windows
         {
             TitlesListWindow.EditTitleWindow = null;
             TitlesListWindow.updateList();
-            if (TitlesListWindow.ShowTitleWindow != null)
-            {
-                TitlesListWindow.ShowTitleWindow = new ShowTitleWindow(TitlesListWindow, titleId);
-                TitlesListWindow.ShowTitleWindow.Close();
-                TitlesListWindow.ShowTitleWindow.Show();
-                TitlesListWindow.ShowTitleWindow.Focus();
-            }
         }
 
         private void TBText_GotFocus(object sender, RoutedEventArgs e)
